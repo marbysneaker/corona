@@ -15,7 +15,8 @@ state = {
   countries:[],
   usa:{},
   philippines:{},
-  select:{}
+  select:{},
+  twitter:[]
 }
 
 doFetch = () => {
@@ -52,8 +53,19 @@ doFetch = () => {
   
 }
 
+fetchTwitter = () => {
+  fetch('https://publish.twitter.com/oembed?url=https://twitter.com/TwitterDev')
+    .then(response => response.json())
+    .then(data => {
+      console.log('received twitter data', data)
+      this.setState({twitter:data})
+
+    })
+  }
+
 componentDidMount = () => {
   this.doFetch()
+  this.fetchTwitter()
 
 }
   
@@ -99,6 +111,9 @@ render() {
                 <div className='deaths'>TODAY'S DEATHS :{this.state.philippines.todayDeaths}</div>
                 <div className='recovered'>RECOVERED :{this.state.philippines.recovered}</div>
                 <div className='critical'>CRITICAL :{this.state.philippines.critical}</div>
+                <div className='twitter'>
+                <a class="twitter-timeline" data-width="300" data-height="400" data-theme="dark" href="https://twitter.com/WHOPhilippines?ref_src=twsrc%5Etfw">Tweets by WHOPhilippines</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
             </div>
             <div className = "all">
             <FormControl className='select'>
