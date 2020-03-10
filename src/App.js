@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ReactNbsp from 'react-nbsp'
-import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
+import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
+import Button from '@material-ui/core/Button';
 
 class App extends Component {
 state = {
   world : [],
   countries:[],
   usa:{},
-  philippines:{}
+  philippines:{},
+  select:{}
 }
 
 doFetch = () => {
@@ -33,11 +33,20 @@ doFetch = () => {
     .catch((err) => console.error(err));
   covid.countries()
     .then((data) => {
-      console.log(data)
+      console.log('done fetching',data)
       console.log(data[9])
       this.setState({countries:data})
-      this.setState({usa:data[9]})
-      this.setState({philippines:data[57]})
+      for (let i of data){
+        if (i.country === 'USA'){
+          this.setState({usa:i})
+
+        }
+        if (i.country === 'Philippines'){
+          this.setState({philippines:i})
+
+        }
+      }
+      
     })
     .catch((err) => console.error(err));
   
@@ -47,6 +56,18 @@ componentDidMount = () => {
   this.doFetch()
 
 }
+  
+clicked = (country) => {
+
+  console.log(country)
+
+}
+
+handleChange = name => event => {
+    this.setState({
+      select:name
+    });
+  };
 
 render() {
   
@@ -80,7 +101,22 @@ render() {
                 <div className='critical'>CRITICAL :{this.state.philippines.critical}</div>
             </div>
             <div className = "all">
-            4
+            <FormControl className='select'>
+            <InputLabel id="demo-controlled-open-select-label">Select Country</InputLabel>
+            <Select
+              labelId="demo-controlled-open-select-label"
+              id="demo-controlled-open-select"
+      
+            >
+            <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          {this.state.countries.map((country, index) => (
+            <MenuItem value={country.country} onClick={()=> this.clicked(country.country) }>{country.country}</MenuItem>
+          ))}
+          
+            </Select>
+          </FormControl>
             
             </div>
         
