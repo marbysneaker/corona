@@ -111,9 +111,10 @@ render() {
                 <div className='country-pi'>{this.state.philippines.country}</div>
                 <div className='cases'>CASES :{this.state.philippines.cases}</div>
                 <div className='today'>TODAY'S CASES :{this.state.philippines.todayCases}</div>
-                <div className='deaths'>TODAY'S DEATHS :{this.state.philippines.todayDeaths}</div>
-                <div className='recovered'>RECOVERED :{this.state.philippines.recovered}</div>
-                <div className='critical'>CRITICAL :{this.state.philippines.critical}</div>
+                <div className='todays-deaths'>TODAY'S DEATHS :{this.state.philippines.todayDeaths}</div>
+                <div className='recovered'>RECOVERED :<span className= 'recovered-info'>{this.state.philippines.recovered}</span></div>
+                <div className='critical'>CRITICAL : <span className= 'critical-info'>{this.state.philippines.critical}</span></div>
+                <div className='deaths'>DEATHS : {this.state.philippines.deaths}</div>
             </div>
             <div className='twitter-usa'>
                     <TwitterTimelineEmbed
