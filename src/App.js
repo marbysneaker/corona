@@ -8,6 +8,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
+import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton, TwitterVideoEmbed, TwitterOnAirButton } from 'react-twitter-embed';
+
 
 class App extends Component {
 state = {
@@ -97,23 +99,36 @@ render() {
             
             </div>
             <div className = "usa">
-                <div className='country'>COUNTRY : {this.state.usa.country}</div>
+                <div className='country-usa'>{this.state.usa.country}</div>
                 <div className='cases'>CASES : <ReactNbsp/> <ReactNbsp/> {this.state.usa.cases}</div>
                 <div className='today'>TODAY'S CASES :   {this.state.usa.todayCases}</div>
-                <div className='deaths'>TODAY'S DEATHS :  {this.state.usa.todayDeaths}</div>
+                <div className='todays-deaths'>TODAY'S DEATHS :  {this.state.usa.todayDeaths}</div>
                 <div className='recovered'>TODAY'S RECOVERED :  {this.state.usa.recovered}</div>
                 <div className='critical'>CRITICAL :   {this.state.usa.critical}</div>
+                <div className='deaths'>DEATHS : {this.state.usa.deaths}</div>
             </div>
             <div className = "pi">
-                <div className='country'>COUNTRY :{this.state.philippines.country}</div>
+                <div className='country-pi'>{this.state.philippines.country}</div>
                 <div className='cases'>CASES :{this.state.philippines.cases}</div>
                 <div className='today'>TODAY'S CASES :{this.state.philippines.todayCases}</div>
                 <div className='deaths'>TODAY'S DEATHS :{this.state.philippines.todayDeaths}</div>
                 <div className='recovered'>RECOVERED :{this.state.philippines.recovered}</div>
                 <div className='critical'>CRITICAL :{this.state.philippines.critical}</div>
-                <div className='twitter'>
-                <a class="twitter-timeline" data-width="300" data-height="400" data-theme="dark" href="https://twitter.com/WHOPhilippines?ref_src=twsrc%5Etfw">Tweets by WHOPhilippines</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                </div>
+            </div>
+            <div className='twitter-usa'>
+                    <TwitterTimelineEmbed
+                      sourceType="profile"
+                      screenName="CDCemergency"
+                      options={{height: 400, width: 500}}
+                    />
+            </div>
+            <div className='twitter-pi'>
+                  <TwitterTimelineEmbed
+                  sourceType="profile"
+                  screenName="WHOPhilippines"
+                  options={{height: 400, width:500}}
+                />
+
             </div>
             <div className = "all">
             <FormControl className='select'>
