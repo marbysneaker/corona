@@ -23,22 +23,26 @@ state = {
 
 doFetch = () => {
   console.log("fetching")
+  const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
   const url1 = "https://corona.lmao.ninja/all"
   const url2 = "https://corona.lmao.ninja/countries"
   var covid = require('novelcovid');
 
-  covid.all() 
-    .then((data) => {
+  fetch(proxyUrl + url1)
+      .then(response => response.json())
+      .then(data => {
       console.log(data)
-    this.setState({
+      this.setState({
       world: data
-    })})
+      })})
     .catch((err) => console.error(err));
-  covid.countries()
-    .then((data) => {
-      console.log('done fetching',data)
-      console.log(data[9])
+  fetch(proxyUrl + url2)
+      .then(response => response.json())
+      .then(data => {
+      console.log('received twitter data', data)
       this.setState({countries:data})
+      console.log(data[9])
+      
       for (let i of data){
         if (i.country === 'USA'){
           this.setState({usa:i})
@@ -56,7 +60,9 @@ doFetch = () => {
 }
 
 fetchTwitter = () => {
-  fetch('https://publish.twitter.com/oembed?url=https://twitter.com/TwitterDev')
+  const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+  const url = 'https://corona.lmao.ninja/countries';
+  fetch(proxyUrl + url)
     .then(response => response.json())
     .then(data => {
       console.log('received twitter data', data)
@@ -67,7 +73,9 @@ fetchTwitter = () => {
 
 componentDidMount = () => {
   this.doFetch()
-  this.fetchTwitter()
+  // this.fetchTwitter()
+  
+  
 
 }
   
