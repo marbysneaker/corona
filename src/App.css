@@ -42,16 +42,28 @@
   grid-row: 2;
   text-align: center;
 }
+.world-cases span{
+  font-size: 40px;
+  color: #7f78d2;
+}
 .world-deaths{
   grid-column: 2;
   grid-row: 2;
   text-align: center;
   box-sizing: border-box;
 }
+.world-deaths span{
+  color: #b80d57;
+  font-size: 40px;
+}
 .world-recovered{
   grid-column: 3;
   grid-row: 2;
   text-align: center;
+}
+.world-recovered span{
+  color: #ccda46;
+  font-size: 40px;
 }
 .usa{
   grid-column: 1;
@@ -103,73 +115,90 @@
   height: 600px;
 }
 .country-usa{
-  font-size: 25px;
+  font-size: 30px;
   grid-row: 1;
   grid-column-start: 1;
   grid-column-end: 3;
   align-self: center;
   text-align: center;
-  margin-right: 50px;
+  
 }
 .country-pi{
-  font-size: 25px;
+  font-size: 30px;
   grid-row: 1;
   grid-column-start: 1;
   grid-column-end: 3;
   align-self: center;
   text-align: center;
-  margin-right: 50px;
+  
 }
 .cases{
   grid-column: 1;
   grid-row: 2;
   align-self: center;
-  text-align: justify;
-  padding-left: 50px;
+  text-align: center;
+  
+}
+.cases span{
+  color: #ffc2c2;
+  font-size: 25px;
 }
 .today{
   grid-column: 2;
   grid-row: 2;
   align-self: center;
-  text-align: justify;
-  padding-left: 50px;
+  text-align: center;
+}
+.today span{
+  color: #f688bb;
+  font-size: 25px;
 }
 .todays-deaths{
   grid-column: 1;
   grid-row: 3;
   align-self: center;
-  text-align: justify;
-  padding-left: 50px;
+  text-align: center;
+  
+}
+.todays-deaths span{
+  color: #b80d57;
+  font-size: 25px;
 }
 .recovered{
   grid-column: 2;
   grid-row: 3;
   align-self: center;
-  text-align: justify;
-  padding-left: 50px;
+  text-align: center;
+  
 }
-.recovered-info{
-  color: #0f4c81;
+.recovered span{
+  color: #ccda46;
+  font-size: 25px;
 }
+
 .critical{
   grid-row: 4;
   font-weight: bolder;
   
   align-self: center;
   grid-column: 1;
-  text-align: justify;
-  padding-left: 50px;
+  text-align: center;
+  
 }
-.critical-info{
+.critical span{
   color: red;
+  font-size: 25px;
 
 }
 .deaths{
   grid-row: 4;
   align-self: center;
   grid-column: 2;
-  text-align: justify;
-  padding-left: 50px;
+  text-align: center;
+}
+.deaths span{
+  color: #552244;
+  font-size: 25px;
 }
 .select{
   background-color: azure;
