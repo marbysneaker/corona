@@ -18,7 +18,8 @@ state = {
   usa:{},
   philippines:{},
   select:{},
-  twitter:[]
+  twitter:[],
+  newcountries:[]
 }
 
 doFetch = () => {
@@ -26,7 +27,8 @@ doFetch = () => {
   const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
   const url1 = "https://corona.lmao.ninja/all"
   const url2 = "https://corona.lmao.ninja/countries"
-
+  const url3 = 'https://ghoapi.azureedge.net/api/DIMENSION/usa/DimensionValues'
+  const url4 ="https://coronavirus-tracker-api.herokuapp.com/all"
   fetch(url1)
       .then(response => response.json())
       .then(data => {
@@ -34,6 +36,24 @@ doFetch = () => {
       this.setState({
       world: data
       })})
+    .catch((err) => console.error(err));
+  fetch(url4)
+      .then(response => response.json())
+      .then(data => {
+      console.log(data)
+      this.setState({newcountries:data.confirmed.locations})
+      console.log(this.state.newcountries)
+
+      for (let i of this.state.newcountries){
+        if (i.country === 'US'){
+          console.log(i.province)
+          // if(i.province === 'san francisco, CA'){
+          //   console.log(i)
+          // }
+        }
+      }
+      
+      })
     .catch((err) => console.error(err));
   fetch(url2)
       .then(response => response.json())
