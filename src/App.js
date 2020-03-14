@@ -17,6 +17,7 @@ state = {
   countries:[],
   usa:{},
   philippines:{},
+  philippines_history:[],
   select:{},
   twitter:[],
   newcountries:[],
@@ -35,14 +36,6 @@ doFetch = () => {
   const url2 = "https://corona.lmao.ninja/countries"
   const url3 = 'https://ghoapi.azureedge.net/api/DIMENSION/usa/DimensionValues'
   const url4 ="https://coronavirus-tracker-api.herokuapp.com/all"
-  // fetch(url1)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //     console.log(data)
-  //     this.setState({
-  //     world: data
-  //     })})
-  //   .catch((err) => console.error(err));
   fetch(url4)
       .then(response => response.json())
       .then(data => {
@@ -72,11 +65,6 @@ doFetch = () => {
             console.log(i)
           }
         }
-        if (i.country === 'united states'){
-          console.log(i)
-        }else{
-          console.log('not found')
-        }
         // if(i.country === 'US'){
         //   if (i.province.includes('CA')){
         //     console.log(i.province)
@@ -85,6 +73,16 @@ doFetch = () => {
         if (i.country === 'Philippines'){
           console.log(i)
           this.setState({philippines:{confirmed:i.latest}})
+          var lowest = 0;
+          var history = [];
+          for (let [key, value] of Object.entries(i.history)) {
+            if (value >= lowest){
+              lowest = value
+              history = key + ' : ' +value
+            }
+          }
+          console.log(history)
+          this.setState({philippines_history:history})
         }
       }
       this.setState({countries_recovered:data.recovered.locations})
