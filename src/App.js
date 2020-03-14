@@ -19,7 +19,13 @@ state = {
   philippines:{},
   select:{},
   twitter:[],
-  newcountries:[]
+  newcountries:[],
+  countries_recovered:[],
+  alameda :[],
+  santa_clara:[],
+  san_fran:[],
+
+
 }
 
 doFetch = () => {
@@ -29,66 +35,80 @@ doFetch = () => {
   const url2 = "https://corona.lmao.ninja/countries"
   const url3 = 'https://ghoapi.azureedge.net/api/DIMENSION/usa/DimensionValues'
   const url4 ="https://coronavirus-tracker-api.herokuapp.com/all"
-  fetch(url1)
-      .then(response => response.json())
-      .then(data => {
-      console.log(data)
-      this.setState({
-      world: data
-      })})
-    .catch((err) => console.error(err));
+  // fetch(url1)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //     console.log(data)
+  //     this.setState({
+  //     world: data
+  //     })})
+  //   .catch((err) => console.error(err));
   fetch(url4)
       .then(response => response.json())
       .then(data => {
       console.log(data)
-      this.setState({newcountries:data.confirmed.locations})
-      console.log(this.state.newcountries)
+      this.setState({countries:data.confirmed.locations})
+      console.log(this.state.countries)
 
-      for (let i of this.state.newcountries){
+      for (let i of this.state.countries){
         if (i.country === 'US'){
-          console.log(i.province)
-          // if(i.province === 'san francisco, CA'){
-          //   console.log(i)
-          // }
+          // console.log(i.province)
+          if(i.province === 'Alameda County, CA'){
+            console.log(i)
+          }
+          if(i.province === 'Santa Clara County, CA'){
+            console.log(i)
+          }
+          if(i.province === 'San Francisco County, CA'){
+            console.log(i)
+          }
+          if(i.province === 'Contra Costa County, CA'){
+            console.log(i)
+          }
+          if(i.province === 'San Mateo, CA'){
+            console.log(i)
+          }
+          if(i.province === 'Santa Cruz, CA'){
+            console.log(i)
+          }
+        }
+        if (i.country === 'united states'){
+          console.log(i)
+        }else{
+          console.log('not found')
+        }
+        // if(i.country === 'US'){
+        //   if (i.province.includes('CA')){
+        //     console.log(i.province)
+        //   }
+        // }
+        if (i.country === 'Philippines'){
+          console.log(i)
+          this.setState({philippines:{confirmed:i.latest}})
         }
       }
+      this.setState({countries_recovered:data.recovered.locations})
+
+      for (let i of this.state.countries_recovered){
+        if (i.country === 'US'){
+          if(i.province === 'Alameda County, CA'){
+            console.log(i)
+          }
+        }
+        if (i.country === 'Philippines'){
+          console.log(i)
+          this.state.philippines.recovered = i.latest;
+        }
+      }
+
+      this.setState({world:data.latest})
+      
+      
       
       })
     .catch((err) => console.error(err));
-  fetch(url2)
-      .then(response => response.json())
-      .then(data => {
-      console.log('received twitter data', data)
-      this.setState({countries:data})
-      console.log(data[9])
-      
-      for (let i of data){
-        if (i.country === 'USA'){
-          this.setState({usa:i})
-
-        }
-        if (i.country === 'Philippines'){
-          this.setState({philippines:i})
-
-        }
-      }
-      
-    })
-    .catch((err) => console.error(err));
+    }
   
-}
-
-fetchTwitter = () => {
-  const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-  const url = 'https://corona.lmao.ninja/countries';
-  fetch(proxyUrl + url)
-    .then(response => response.json())
-    .then(data => {
-      console.log('received twitter data', data)
-      this.setState({twitter:data})
-
-    })
-  }
 
 componentDidMount = () => {
   this.doFetch()
@@ -119,7 +139,7 @@ render() {
         <div className = "corona-container">
             <div className = "world">
               <div className='world-title'>WORLD </div> 
-              <div className='world-cases'>CASES <br/> <span>{this.state.world.cases} </span></div>
+              <div className='world-cases'>CASES <br/> <span>{this.state.world.confirmed} </span></div>
               <div className='world-deaths'>DEATHS <br/> <span>{this.state.world.deaths}</span></div>
               <div className='world-recovered'>RECOVERED <br/><span>{this.state.world.recovered}</span></div>
               
@@ -136,7 +156,7 @@ render() {
             </div>
             <div className = "pi">
                 <div className='country-pi'>{this.state.philippines.country}</div>
-                <div className='cases'>CASES <br/><span>{this.state.philippines.cases}</span></div>
+                <div className='cases'>CASES <br/><span>{this.state.philippines.confirmed}</span></div>
                 <div className='today'>TODAY'S CASES <br/> <span>{this.state.philippines.todayCases}</span></div>
                 <div className='todays-deaths'>TODAY'S DEATHS <br/><span>{this.state.philippines.todayDeaths}</span></div>
                 <div className='recovered'>RECOVERED <br/><span>{this.state.philippines.recovered}</span></div>
@@ -188,3 +208,38 @@ render() {
   }
 }
 export default App;
+
+// fetch(url2)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //     console.log('received twitter data', data)
+  //     this.setState({countries:data})
+  //     console.log(data[9])
+      
+  //     for (let i of data){
+  //       if (i.country === 'USA'){
+  //         this.setState({usa:i})
+
+  //       }
+  //       if (i.country === 'Philippines'){
+  //         this.setState({philippines:i})
+
+  //       }
+  //     }
+      
+  //   })
+  //   .catch((err) => console.error(err));
+  
+
+
+// fetchTwitter = () => {
+//   const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+//   const url = 'https://corona.lmao.ninja/countries';
+//   fetch(proxyUrl + url)
+//     .then(response => response.json())
+//     .then(data => {
+//       console.log('received twitter data', data)
+//       this.setState({twitter:data})
+
+//     })
+//   }
