@@ -36,16 +36,17 @@ doFetch = () => {
   const url2 = "https://corona.lmao.ninja/countries"
   const url3 = 'https://ghoapi.azureedge.net/api/DIMENSION/usa/DimensionValues'
   const url4 ="https://coronavirus-tracker-api.herokuapp.com/all"
+  let usTotal = 0
   fetch(url4)
       .then(response => response.json())
       .then(data => {
       console.log(data)
       this.setState({countries:data.confirmed.locations})
       console.log(this.state.countries)
-
+      
       for (let i of this.state.countries){
         if (i.country === 'US'){
-          // console.log(i.province)
+          usTotal += i.latest;
           if(i.province === 'Alameda County, CA'){
             console.log(i)
           }
@@ -65,11 +66,7 @@ doFetch = () => {
             console.log(i)
           }
         }
-        // if(i.country === 'US'){
-        //   if (i.province.includes('CA')){
-        //     console.log(i.province)
-        //   }
-        // }
+        this.state.usa.confirmed = usTotal;
         if (i.country === 'Philippines'){
           console.log(i)
           this.setState({philippines:{confirmed:i.latest}})
@@ -86,7 +83,7 @@ doFetch = () => {
         }
       }
       this.setState({countries_recovered:data.recovered.locations})
-
+      // loop through recovered list
       for (let i of this.state.countries_recovered){
         if (i.country === 'US'){
           if(i.province === 'Alameda County, CA'){
@@ -100,6 +97,20 @@ doFetch = () => {
       }
 
       this.setState({world:data.latest})
+      // loop through death list
+      for (let i of data.deaths.locations){
+        if (i.country === 'US'){
+          if(i.province === 'Alameda County, CA'){
+            console.log(i)
+          }
+        }
+        if (i.country === 'Philippines'){
+          console.log(i)
+          this.state.philippines.deaths = i.latest;
+        }
+      }
+        
+      }
       
       
       
@@ -145,7 +156,7 @@ render() {
             </div>
             <div className = "usa">
                 <div className='country-usa'>{this.state.usa.country}</div>
-                <div className='cases'>CASES <br/> <span>{this.state.usa.cases}</span></div>
+                <div className='cases'>CASES <br/> <span>{this.state.usa.confirmed}</span></div>
                 <div className='today'>TODAY'S CASES <br/><span>{this.state.usa.todayCases}</span> </div>
                 <div className='todays-deaths'>TODAY'S DEATHS <br/><span>{this.state.usa.todayDeaths}</span></div>
                 <div className='recovered'>TODAY'S RECOVERED <br/> <span>{this.state.usa.recovered}</span></div>
