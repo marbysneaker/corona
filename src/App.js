@@ -79,7 +79,7 @@ doFetch = () => {
             }
           }
           console.log(history)
-          this.setState({philippines_history:history})
+          this.state.philippines.philippines_history = history
         }
       }
       this.setState({countries_recovered:data.recovered.locations})
@@ -109,10 +109,6 @@ doFetch = () => {
           this.state.philippines.deaths = i.latest;
         }
       }
-        
-      }
-      
-      
       
       })
     .catch((err) => console.error(err));
@@ -166,7 +162,7 @@ render() {
             <div className = "pi">
                 <div className='country-pi'>{this.state.philippines.country}</div>
                 <div className='cases'>CASES <br/><span>{this.state.philippines.confirmed}</span></div>
-                <div className='today'>TODAY'S CASES <br/> <span>{this.state.philippines.todayCases}</span></div>
+                <div className='today'>LAST UPDATED <br/> <span>{this.state.philippines.philippines_history}</span></div>
                 <div className='todays-deaths'>TODAY'S DEATHS <br/><span>{this.state.philippines.todayDeaths}</span></div>
                 <div className='recovered'>RECOVERED <br/><span>{this.state.philippines.recovered}</span></div>
                 <div className='critical'>CRITICAL <br/> <span>{this.state.philippines.critical}</span></div>
