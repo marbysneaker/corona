@@ -123,10 +123,6 @@ doFetch = () => {
 
 componentDidMount = () => {
   this.doFetch()
-  // this.fetchTwitter()
-  
-  
-
 }
   
 clicked = (country) => {
@@ -191,9 +187,6 @@ render() {
 
             </div>
             <div className = "all">
-         
-            {this.state.usa.confirmed}
-            {this.state.us_death}
             </div>
         
         
