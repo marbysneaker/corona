@@ -8,7 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
-
+import {TwitterTimelineEmbed} from 'react-twitter-embed';
 
 
 class App extends Component {
@@ -110,7 +110,7 @@ doFetch = () => {
         }
       }
       console.log(us_deaths)
-      this.state.usa.deaths = us_deaths;
+      this.setState({ usa: { ...this.state.usa, deaths: us_deaths}})
       console.log(this.state.usa.deaths)
       
       })
@@ -161,7 +161,7 @@ render() {
                 <div className='todays-deaths'>TODAY'S DEATHS <br/><span></span></div>
                 <div className='recovered'>TODAY'S RECOVERED <br/> <span>{this.state.usa.recovered}</span></div>
                 <div className='critical'>CRITICAL <br/> <span>{this.state.usa.critical}</span></div>
-                <div className='deaths'>DEATHS <br/><span></span> </div>
+                <div className='deaths'>DEATHS <br/><span>{this.state.usa.death}</span> </div>
             </div>
             <div className = "pi">
                 <div className='country-pi'>{this.state.philippines.country}</div>
@@ -189,7 +189,8 @@ render() {
             </div>
             <div className = "all">
          
-            
+            {this.state.usa.confirmed}
+            {this.state.usa.deaths}
             </div>
         
         
