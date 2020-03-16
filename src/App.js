@@ -8,14 +8,14 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
-import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton, TwitterVideoEmbed, TwitterOnAirButton } from 'react-twitter-embed';
+
 
 
 class App extends Component {
 state = {
   world : [],
   countries:[],
-  usa:{},
+  usa:[],
   philippines:{},
   philippines_history:[],
   select:{},
@@ -25,8 +25,6 @@ state = {
   alameda :[],
   santa_clara:[],
   san_fran:[],
-
-
 }
 
 doFetch = () => {
@@ -98,8 +96,10 @@ doFetch = () => {
 
       this.setState({world:data.latest})
       // loop through death list
-      for (let i of data.deaths.locations){
+      let us_deaths = 0
+      for (let i of data.deaths.locations){   
         if (i.country === 'US'){
+          us_deaths += i.latest
           if(i.province === 'Alameda County, CA'){
             console.log(i)
           }
@@ -109,6 +109,9 @@ doFetch = () => {
           this.state.philippines.deaths = i.latest;
         }
       }
+      console.log(us_deaths)
+      this.state.usa.deaths = us_deaths;
+      console.log(this.state.usa.deaths)
       
       })
     .catch((err) => console.error(err));
@@ -136,6 +139,7 @@ handleChange = name => event => {
   };
 
 render() {
+  console.log(this.state.philippines.deaths)
   
   return (
     
@@ -153,17 +157,17 @@ render() {
             <div className = "usa">
                 <div className='country-usa'>{this.state.usa.country}</div>
                 <div className='cases'>CASES <br/> <span>{this.state.usa.confirmed}</span></div>
-                <div className='today'>TODAY'S CASES <br/><span>{this.state.usa.todayCases}</span> </div>
-                <div className='todays-deaths'>TODAY'S DEATHS <br/><span>{this.state.usa.todayDeaths}</span></div>
+                <div className='today'>TODAY'S CASES <br/><span></span> </div>
+                <div className='todays-deaths'>TODAY'S DEATHS <br/><span></span></div>
                 <div className='recovered'>TODAY'S RECOVERED <br/> <span>{this.state.usa.recovered}</span></div>
                 <div className='critical'>CRITICAL <br/> <span>{this.state.usa.critical}</span></div>
-                <div className='deaths'>DEATHS <br/><span>{this.state.usa.deaths}</span> </div>
+                <div className='deaths'>DEATHS <br/><span></span> </div>
             </div>
             <div className = "pi">
                 <div className='country-pi'>{this.state.philippines.country}</div>
                 <div className='cases'>CASES <br/><span>{this.state.philippines.confirmed}</span></div>
                 <div className='today'>LAST UPDATED <br/> <span>{this.state.philippines.philippines_history}</span></div>
-                <div className='todays-deaths'>TODAY'S DEATHS <br/><span>{this.state.philippines.todayDeaths}</span></div>
+                <div className='todays-deaths'>DEATHS <br/><span>{this.state.philippines.deaths}</span></div>
                 <div className='recovered'>RECOVERED <br/><span>{this.state.philippines.recovered}</span></div>
                 <div className='critical'>CRITICAL <br/> <span>{this.state.philippines.critical}</span></div>
                 <div className='deaths'>DEATHS <br/> <span>{this.state.philippines.deaths}</span></div>
@@ -184,22 +188,7 @@ render() {
 
             </div>
             <div className = "all">
-            <FormControl className='select'>
-            <InputLabel id="demo-controlled-open-select-label">Select Country</InputLabel>
-            <Select
-              labelId="demo-controlled-open-select-label"
-              id="demo-controlled-open-select"
-      
-            >
-            <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          {this.state.countries.map((country, index) => (
-            <MenuItem value={country.country} onClick={()=> this.clicked(country.country) }>{country.country}</MenuItem>
-          ))}
-          
-            </Select>
-          </FormControl>
+         
             
             </div>
         
@@ -214,37 +203,21 @@ render() {
 }
 export default App;
 
-// fetch(url2)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //     console.log('received twitter data', data)
-  //     this.setState({countries:data})
-  //     console.log(data[9])
-      
-  //     for (let i of data){
-  //       if (i.country === 'USA'){
-  //         this.setState({usa:i})
+// this.setState({ usa: { ...this.state.usa, deaths: us_deaths}
 
-  //       }
-  //       if (i.country === 'Philippines'){
-  //         this.setState({philippines:i})
+// <FormControl className='select'>
+// <InputLabel id="demo-controlled-open-select-label">Select Country</InputLabel>
+// <Select
+//   labelId="demo-controlled-open-select-label"
+//   id="demo-controlled-open-select"
 
-  //       }
-  //     }
-      
-  //   })
-  //   .catch((err) => console.error(err));
-  
+// >
+// <MenuItem value="">
+// <em>None</em>
+// </MenuItem>
+// {this.state.countries.map((country, index) => (
+// <MenuItem value={country.country} onClick={()=> this.clicked(country.country) }>{country.country}</MenuItem>
+// ))}
 
-
-// fetchTwitter = () => {
-//   const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-//   const url = 'https://corona.lmao.ninja/countries';
-//   fetch(proxyUrl + url)
-//     .then(response => response.json())
-//     .then(data => {
-//       console.log('received twitter data', data)
-//       this.setState({twitter:data})
-
-//     })
-//   }
+// </Select>
+// </FormControl>
