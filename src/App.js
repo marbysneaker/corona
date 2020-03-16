@@ -25,6 +25,7 @@ state = {
   alameda :[],
   santa_clara:[],
   san_fran:[],
+  us_death: 0,
 }
 
 doFetch = () => {
@@ -96,10 +97,11 @@ doFetch = () => {
 
       this.setState({world:data.latest})
       // loop through death list
-      let us_deaths = 0
+      let us_deaths =0
       for (let i of data.deaths.locations){   
         if (i.country === 'US'){
           us_deaths += i.latest
+
           if(i.province === 'Alameda County, CA'){
             console.log(i)
           }
@@ -112,6 +114,7 @@ doFetch = () => {
       console.log(us_deaths)
       this.setState({ usa: { ...this.state.usa, deaths: us_deaths}})
       console.log(this.state.usa.deaths)
+      this.setState({us_death:us_deaths})
       
       })
     .catch((err) => console.error(err));
@@ -161,7 +164,7 @@ render() {
                 <div className='todays-deaths'>TODAY'S DEATHS <br/><span></span></div>
                 <div className='recovered'>TODAY'S RECOVERED <br/> <span>{this.state.usa.recovered}</span></div>
                 <div className='critical'>CRITICAL <br/> <span>{this.state.usa.critical}</span></div>
-                <div className='deaths'>DEATHS <br/><span>{this.state.usa.death}</span> </div>
+                <div className='deaths'>DEATHS <br/><span>{this.state.us_death}</span> </div>
             </div>
             <div className = "pi">
                 <div className='country-pi'>{this.state.philippines.country}</div>
@@ -190,7 +193,7 @@ render() {
             <div className = "all">
          
             {this.state.usa.confirmed}
-            {this.state.usa.deaths}
+            {this.state.us_death}
             </div>
         
         
