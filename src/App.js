@@ -48,6 +48,23 @@ doFetch = () => {
         if (i.country === 'US'){
           usTotal += i.latest;
         }
+        if(i.province === 'california'){
+          this.setState({ california: { ...this.state.california, confirmed: i.latest}
+          })
+
+          var lowest = 0;
+          var us_history = [];
+          for (let [key, value] of Object.entries(i.history)) {
+              if (value >= lowest){
+                lowest = value
+                us_history = key
+              }
+            }
+          this.setState({usa:{...this.state.usa, history: us_history}})
+
+
+          
+        }
         this.state.usa.confirmed = usTotal;
         if (i.country === 'Philippines'){
           console.log(i)
@@ -78,7 +95,7 @@ doFetch = () => {
         }
 
         if(i.province === 'california'){
-          this.setState({ california: { ...this.state.california, deaths: i.latest}
+          this.setState({ california: { ...this.state.california, recovered: i.latest}
           })
           
         }
@@ -89,20 +106,7 @@ doFetch = () => {
       let us_deaths =0
       for (let i of data.deaths.locations){   
         if (i.country === 'US'){
-          us_deaths += i.latest
-          if (i.province === 'California'){
-            console.log(i)
-            var lowest = 0;
-            var us_history = [];
-            for (let [key, value] of Object.entries(i.history)) {
-              if (value >= lowest){
-                lowest = value
-                us_history = key
-              }
-            }
-            this.state.usa.history = us_history;
-          }
-
+          us_deaths += i.latest;
           if(i.province === 'california'){
             this.setState({ california: { ...this.state.california, deaths: i.latest}
             })
