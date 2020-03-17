@@ -91,7 +91,7 @@ doFetch = () => {
           this.setState({philippines:{...this.state.philippines, recovered : i.latest}})
         }
 
-        if(i.province === 'california'){
+        if(i.province === 'California'){
           this.setState({ california: { ...this.state.california, recovered: i.latest}
           })
           
@@ -104,7 +104,7 @@ doFetch = () => {
       for (let i of data.deaths.locations){   
         if (i.country === 'US'){
           us_deaths += i.latest;
-          if(i.province === 'california'){
+          if(i.province === 'California'){
             this.setState({ california: { ...this.state.california, deaths: i.latest}
             })
             
@@ -173,10 +173,10 @@ render() {
             </div>
             <div className = "ca">
                 <div className='country-pi'>CALIFORNIA</div>
-                <div className='cases'>CASES <br/><span>{this.state.philippines.confirmed}</span></div>
-                <div className='today'>LAST UPDATED <br/> <span>{this.state.philippines.philippines_history}</span></div>
-                <div className='recovered'>RECOVERED <br/><span>{this.state.philippines.recovered}</span></div>
-                <div className='deaths'>DEATHS <br/> <span>{this.state.philippines.deaths}</span></div>
+                <div className='cases'>CASES <br/><span>{this.state.california.confirmed}</span></div>
+                <div className='today'>LAST UPDATED <br/> <span>{this.state.usa.history}</span></div>
+                <div className='recovered'>RECOVERED <br/><span>{this.state.california.recovered}</span></div>
+                <div className='deaths'>DEATHS <br/> <span>{this.state.california.deaths}</span></div>
             </div>
             <div className = "pi">
                 <div className='country-pi'>PHILIPPINES</div>
