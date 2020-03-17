@@ -26,6 +26,7 @@ state = {
   santa_clara:[],
   san_fran:[],
   us_death: 0,
+  california:[],
 }
 
 doFetch = () => {
@@ -75,6 +76,12 @@ doFetch = () => {
           console.log(i)
           this.state.philippines.recovered = i.latest;
         }
+
+        if(i.province === 'california'){
+          this.setState({ california: { ...this.state.california, deaths: i.latest}
+          })
+          
+        }
       }
       this.state.usa.recovered = us_recovered;
       this.setState({world:data.latest})
@@ -96,15 +103,18 @@ doFetch = () => {
             this.state.usa.history = us_history;
           }
 
-          if(i.province === 'Alameda County, CA'){
-            console.log(i)
+          if(i.province === 'california'){
+            this.setState({ california: { ...this.state.california, deaths: i.latest}
+            })
+            
           }
         }
         if (i.country === 'Philippines'){
           console.log(i)
-          this.state.philippines.deaths = i.latest;
-        }
+          this.setState({ philippines: { ...this.state.philippines, deaths: i.latest}
+        })
       }
+    }
       console.log(us_deaths)
       this.setState({ usa: { ...this.state.usa, deaths: us_deaths}})
       console.log(this.state.usa.deaths)
@@ -132,7 +142,6 @@ handleChange = name => event => {
   };
 
 render() {
-  console.log(this.state.philippines.deaths)
   
   return (
     
