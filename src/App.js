@@ -46,24 +46,6 @@ doFetch = () => {
       for (let i of this.state.countries){
         if (i.country === 'US'){
           usTotal += i.latest;
-          if(i.province === 'Alameda County, CA'){
-            console.log(i)
-          }
-          if(i.province === 'Santa Clara County, CA'){
-            console.log(i)
-          }
-          if(i.province === 'San Francisco County, CA'){
-            console.log(i)
-          }
-          if(i.province === 'Contra Costa County, CA'){
-            console.log(i)
-          }
-          if(i.province === 'San Mateo, CA'){
-            console.log(i)
-          }
-          if(i.province === 'Santa Cruz, CA'){
-            console.log(i)
-          }
         }
         this.state.usa.confirmed = usTotal;
         if (i.country === 'Philippines'){
@@ -83,24 +65,36 @@ doFetch = () => {
       }
       this.setState({countries_recovered:data.recovered.locations})
       // loop through recovered list
+      let us_recovered = 0 
       for (let i of this.state.countries_recovered){
         if (i.country === 'US'){
-          if(i.province === 'Alameda County, CA'){
-            console.log(i)
-          }
+          us_recovered += i.latest
+          
         }
         if (i.country === 'Philippines'){
           console.log(i)
           this.state.philippines.recovered = i.latest;
         }
       }
-
+      this.state.usa.recovered = us_recovered;
       this.setState({world:data.latest})
       // loop through death list
       let us_deaths =0
       for (let i of data.deaths.locations){   
         if (i.country === 'US'){
           us_deaths += i.latest
+          if (i.province === 'California'){
+            console.log(i)
+            var lowest = 0;
+            var us_history = [];
+            for (let [key, value] of Object.entries(i.history)) {
+              if (value >= lowest){
+                lowest = value
+                us_history = key
+              }
+            }
+            this.state.usa.history = us_history;
+          }
 
           if(i.province === 'Alameda County, CA'){
             console.log(i)
@@ -154,30 +148,34 @@ render() {
             
             </div>
             <div className = "usa">
-                <div className='country-usa'>{this.state.usa.country}</div>
+                <div className='country-usa'>USA</div>
                 <div className='cases'>CASES <br/> <span>{this.state.usa.confirmed}</span></div>
-                <div className='today'>TODAY'S CASES <br/><span></span> </div>
-                <div className='todays-deaths'>TODAY'S DEATHS <br/><span></span></div>
-                <div className='recovered'>TODAY'S RECOVERED <br/> <span>{this.state.usa.recovered}</span></div>
-                <div className='critical'>CRITICAL <br/> <span>{this.state.usa.critical}</span></div>
+                <div className='today'>LAST UPDATED <br/> <span>{this.state.usa.history}</span></div>
+                <div className='recovered'>RECOVERED <br/> <span>{this.state.usa.recovered}</span></div>
                 <div className='deaths'>DEATHS <br/><span>{this.state.us_death}</span> </div>
             </div>
             <div className = "pi">
-                <div className='country-pi'>{this.state.philippines.country}</div>
+                <div className='country-pi'>PHILIPPINES</div>
                 <div className='cases'>CASES <br/><span>{this.state.philippines.confirmed}</span></div>
                 <div className='today'>LAST UPDATED <br/> <span>{this.state.philippines.philippines_history}</span></div>
-                <div className='todays-deaths'>DEATHS <br/><span>{this.state.philippines.deaths}</span></div>
                 <div className='recovered'>RECOVERED <br/><span>{this.state.philippines.recovered}</span></div>
-                <div className='critical'>CRITICAL <br/> <span>{this.state.philippines.critical}</span></div>
                 <div className='deaths'>DEATHS <br/> <span>{this.state.philippines.deaths}</span></div>
             </div>
-            <div className='twitter-usa'>
-                    <TwitterTimelineEmbed
-                      sourceType="profile"
-                      screenName="CDCemergency"
-                      options={{height: 400, width: 500}}
-                    />
+            <div className = "ca">
+                <div className='country-pi'>CALIFORNIA</div>
+                <div className='cases'>CASES <br/><span>{this.state.philippines.confirmed}</span></div>
+                <div className='today'>LAST UPDATED <br/> <span>{this.state.philippines.philippines_history}</span></div>
+                <div className='recovered'>RECOVERED <br/><span>{this.state.philippines.recovered}</span></div>
+                <div className='deaths'>DEATHS <br/> <span>{this.state.philippines.deaths}</span></div>
             </div>
+            <div className = "pi">
+                <div className='country-pi'>PHILIPPINES</div>
+                <div className='cases'>CASES <br/><span>{this.state.philippines.confirmed}</span></div>
+                <div className='today'>LAST UPDATED <br/> <span>{this.state.philippines.philippines_history}</span></div>
+                <div className='recovered'>RECOVERED <br/><span>{this.state.philippines.recovered}</span></div>
+                <div className='deaths'>DEATHS <br/> <span>{this.state.philippines.deaths}</span></div>
+            </div>
+            
             <div className='twitter-pi'>
                   <TwitterTimelineEmbed
                   sourceType="profile"
