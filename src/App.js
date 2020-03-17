@@ -48,7 +48,7 @@ doFetch = () => {
         if (i.country === 'US'){
           usTotal += i.latest;
         }
-        if(i.province === 'california'){
+        if(i.province === 'California'){
           this.setState({ california: { ...this.state.california, confirmed: i.latest}
           })
 
@@ -61,11 +61,8 @@ doFetch = () => {
               }
             }
           this.setState({usa:{...this.state.usa, history: us_history}})
-
-
-          
         }
-        this.state.usa.confirmed = usTotal;
+        this.setState({usa:{...this.state.usa, confirmed: usTotal}});
         if (i.country === 'Philippines'){
           console.log(i)
           this.setState({philippines:{confirmed:i.latest}})
@@ -78,7 +75,7 @@ doFetch = () => {
             }
           }
           console.log(history)
-          this.state.philippines.philippines_history = history
+          this.setState({philippines:{...this.state.philippines, philippines_history : history}})
         }
       }
       this.setState({countries_recovered:data.recovered.locations})
@@ -91,7 +88,7 @@ doFetch = () => {
         }
         if (i.country === 'Philippines'){
           console.log(i)
-          this.state.philippines.recovered = i.latest;
+          this.setState({philippines:{...this.state.philippines, recovered : i.latest}})
         }
 
         if(i.province === 'california'){
@@ -100,7 +97,7 @@ doFetch = () => {
           
         }
       }
-      this.state.usa.recovered = us_recovered;
+      this.setState({usa:{...this.state.usa, recovered: us_recovered}})
       this.setState({world:data.latest})
       // loop through death list
       let us_deaths =0
