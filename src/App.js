@@ -164,13 +164,6 @@ render() {
                 <div className='recovered'>RECOVERED <br/> <span>{this.state.usa.recovered}</span></div>
                 <div className='deaths'>DEATHS <br/><span>{this.state.us_death}</span> </div>
             </div>
-            <div className = "pi">
-                <div className='country-pi'>PHILIPPINES</div>
-                <div className='cases'>CASES <br/><span>{this.state.philippines.confirmed}</span></div>
-                <div className='today'>LAST UPDATED <br/> <span>{this.state.philippines.philippines_history}</span></div>
-                <div className='recovered'>RECOVERED <br/><span>{this.state.philippines.recovered}</span></div>
-                <div className='deaths'>DEATHS <br/> <span>{this.state.philippines.deaths}</span></div>
-            </div>
             <div className = "ca">
                 <div className='country-pi'>CALIFORNIA</div>
                 <div className='cases'>CASES <br/><span>{this.state.california.confirmed}</span></div>
@@ -185,7 +178,6 @@ render() {
                 <div className='recovered'>RECOVERED <br/><span>{this.state.philippines.recovered}</span></div>
                 <div className='deaths'>DEATHS <br/> <span>{this.state.philippines.deaths}</span></div>
             </div>
-            
             <div className='twitter-pi'>
                   <TwitterTimelineEmbed
                   sourceType="profile"
