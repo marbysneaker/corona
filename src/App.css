@@ -228,3 +228,211 @@
 }
 
 
+@media only screen and (max-width: 768px){
+  .corona-container{
+  
+    width: 100%;
+    height: 100%;
+    color: aquamarine;
+    font-family: 'Bebas Neue';
+    background-color: #4e4e50;
+    
+  
+  }
+  .world{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    font-size: 30px;
+    text-align: center;
+    align-self: center;
+    display: grid;
+    grid-template-columns: 1fr, 1fr, 1fr;
+    grid-template-columns: 1fr, 1fr;
+    background-image: url('coronavirus_artwork-spl.jpg');
+  }
+  .world-title{
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    align-self: center;
+    padding: 50px;
+    box-sizing: border-box;
+  }
+  .world-cases{
+    grid-column: 1;
+    grid-row: 2;
+    text-align: center;
+  }
+  .world-cases span{
+    font-size: 40px;
+    color: #7f78d2;
+  }
+  .world-deaths{
+    grid-column: 2;
+    grid-row: 2;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  .world-deaths span{
+    color: #b80d57;
+    font-size: 40px;
+  }
+  .world-recovered{
+    grid-column: 3;
+    grid-row: 2;
+    text-align: center;
+  }
+  .world-recovered span{
+    color: #ccda46;
+    font-size: 40px;
+  }
+  .usa{
+    align-self: center;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr, 1fr;
+    grid-template-rows: 1fr, 1fr, 1fr, 1fr;
+    width: 100%;
+    height: 100%;
+    padding: 50px;
+    box-sizing: border-box;
+  
+  }
+  .pi{
+    align-self: center;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr, 1fr;
+    grid-template-rows: 1fr, 1fr, 1fr, 1fr;
+    width: 100%;
+    height: 100%;
+    padding: 50px;
+    box-sizing: border-box;
+  }
+  .ca{
+    align-self: center;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr, 1fr;
+    grid-template-rows: 1fr, 1fr, 1fr;
+    width: 100%;
+    height: 100%;
+    padding: 50px;
+    box-sizing: border-box;
+  }
+  .twitter-pi{
+    align-self: center;
+    text-align: center;
+  }
+  .all{
+    text-align: center;
+    align-self: center;
+    text-align: center;
+    background-image: url('coronavirusmap.png');
+    height: 600px;
+  }
+  .country-usa{
+    font-size: 30px;
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    align-self: center;
+    text-align: center;
+    
+  }
+  .country-pi{
+    font-size: 30px;
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    align-self: center;
+    text-align: center;
+    
+  }
+  .country-ca{
+    font-size: 30px;
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    align-self: center;
+    text-align: center;
+    
+  }
+  .cases{
+    grid-column: 1;
+    grid-row: 2;
+    align-self: center;
+    text-align: center;
+    
+  }
+  .cases span{
+    color: #ffc2c2;
+    font-size: 25px;
+  }
+  .today{
+    grid-column: 2;
+    grid-row: 2;
+    align-self: center;
+    text-align: center;
+  }
+  .today span{
+    color: #f688bb;
+    font-size: 25px;
+  }
+  /* .todays-deaths{
+    grid-column: 1;
+    grid-row: 3;
+    align-self: center;
+    text-align: center;
+    
+  }
+  .todays-deaths span{
+    color: #b80d57;
+    font-size: 25px;
+  } */
+  .recovered{
+    grid-column: 2;
+    grid-row: 3;
+    align-self: center;
+    text-align: center;
+    
+  }
+  .recovered span{
+    color: #ccda46;
+    font-size: 25px;
+  }
+  
+  .critical{
+    grid-row: 4;
+    font-weight: bolder;
+    
+    align-self: center;
+    grid-column: 1;
+    text-align: center;
+    
+  }
+  .critical span{
+    color: red;
+    font-size: 25px;
+  
+  }
+  .deaths{
+    grid-row: 3;
+    align-self: center;
+    grid-column: 1;
+    text-align: center;
+  }
+  .deaths span{
+    color: #552244;
+    font-size: 25px;
+  }
+  .select{
+    background-color: azure;
+    width: 300px;
+    position: relative;
+    top: 100px;
+    text-align: center;
+  }
+
+}
