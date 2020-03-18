@@ -307,6 +307,7 @@
     box-sizing: border-box;
     background-color: #35495e;
     border-radius: 25px;
+    margin-top: 25px;
   
   }
   .pi{
@@ -321,6 +322,7 @@
     box-sizing: border-box;
     background-color: #35495e;
     border-radius: 25px;
+    margin-top: 25px;
   }
   .ca{
     align-self: center;
@@ -332,6 +334,9 @@
     height: 100%;
     padding: 50px;
     box-sizing: border-box;
+    background-color: #35495e;
+    border-radius: 25px;
+    margin-top: 25px;
   }
   .twitter-pi{
     margin-top: 25px;
