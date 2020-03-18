@@ -150,7 +150,7 @@ render() {
       <header className="App-header">
         <div className = "corona-container">
             <div className = "world">
-              <div className='world-title'>WORLD </div> 
+              <div className='world-title'><span>WORLD</span> </div> 
               <div className='world-cases'>CASES <br/> <span>{this.state.world.confirmed} </span></div>
               <div className='world-deaths'>DEATHS <br/> <span>{this.state.world.deaths}</span></div>
               <div className='world-recovered'>RECOVERED <br/><span>{this.state.world.recovered}</span></div>
