@@ -234,7 +234,7 @@
   
     width: 100%;
     height: 100%;
-    color: aquamarine;
+    color: #bbded6;
     font-family: 'Bebas Neue';
     background-color: #4e4e50;
     display: inline-block;
@@ -290,7 +290,7 @@
     text-align: center;
   }
   .world-recovered span{
-    color: #ccda46;
+    color: #2c786c;
     font-size: 40px;
   }
   .usa{
@@ -302,7 +302,7 @@
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    background-color: #758184;
+    background-color: #35495e;
     border-radius: 25px;
   
   }
@@ -316,7 +316,7 @@
     height: 100%;
     padding: 50px;
     box-sizing: border-box;
-    background-color: #758184;
+    background-color: #35495e;
     border-radius: 25px;
   }
   .ca{
@@ -377,7 +377,7 @@
     
   }
   .cases span{
-    color: #ffc2c2;
+    color: #12cad6;
     font-size: 25px;
   }
   .today{
