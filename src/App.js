@@ -27,6 +27,7 @@ state = {
   san_fran:[],
   us_death: 0,
   california:[],
+  newYork:[]
 }
 
 doFetch = () => {
@@ -46,6 +47,7 @@ doFetch = () => {
       
       for (let i of this.state.countries){
         if (i.country === 'US'){
+          console.log(i.province)
           usTotal += i.latest;
         }
         if(i.province === 'California'){
@@ -61,6 +63,22 @@ doFetch = () => {
               }
             }
           this.setState({usa:{...this.state.usa, history: us_history}})
+        }
+        if(i.province === 'New York'){
+          this.setState({ newYork: { ...this.state.newYork, confirmed: i.latest}
+          })
+
+          var lowest = 0;
+          var us_history = [];
+          for (let [key, value] of Object.entries(i.history)) {
+              if (value >= lowest){
+                lowest = value
+                us_history = key
+              }
+            }
+          this.setState({usa:{...this.state.usa, history: us_history}})
+
+
         }
         this.setState({usa:{...this.state.usa, confirmed: usTotal}});
         if (i.country === 'Philippines'){
@@ -96,6 +114,7 @@ doFetch = () => {
           })
           
         }
+
       }
       this.setState({usa:{...this.state.usa, recovered: us_recovered}})
       this.setState({world:data.latest})
@@ -106,6 +125,11 @@ doFetch = () => {
           us_deaths += i.latest;
           if(i.province === 'California'){
             this.setState({ california: { ...this.state.california, deaths: i.latest}
+            })
+            
+          }
+          if(i.province === 'New York'){
+            this.setState({ newYork: { ...this.state.newYork, deaths: i.latest}
             })
             
           }
@@ -170,6 +194,13 @@ render() {
                 <div className='today'>LAST UPDATED <br/> <span>{this.state.usa.history}</span></div>
                 <div className='recovered'>RECOVERED <br/><span>{this.state.california.recovered}</span></div>
                 <div className='deaths'>DEATHS <br/> <span>{this.state.california.deaths}</span></div>
+            </div>
+            <div className = "new-york">
+                <div className='country-pi'>NEW YORK</div>
+                <div className='cases'>CASES <br/><span>{this.state.newYork.confirmed}</span></div>
+                <div className='today'>LAST UPDATED <br/> <span>{this.state.philippines.philippines_history}</span></div>
+                <div className='recovered'>RECOVERED <br/><span>{this.state.philippines.recovered}</span></div>
+                <div className='deaths'>DEATHS <br/> <span>{this.state.newYork.deaths}</span></div>
             </div>
             <div className = "pi">
                 <div className='country-pi'>PHILIPPINES</div>
