@@ -115,7 +115,7 @@ doFetch = () => {
           
         }
         if(i.province === 'New York'){
-          this.setState({ california: { ...this.state.newYork, recovered: i.latest}
+          this.setState({ newYork: { ...this.state.newYork, recovered: i.latest}
           })
           
         }
