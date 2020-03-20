@@ -114,6 +114,11 @@ doFetch = () => {
           })
           
         }
+        if(i.province === 'New York'){
+          this.setState({ california: { ...this.state.newYork, recovered: i.latest}
+          })
+          
+        }
 
       }
       this.setState({usa:{...this.state.usa, recovered: us_recovered}})
@@ -198,8 +203,8 @@ render() {
             <div className = "new-york">
                 <div className='country-pi'>NEW YORK</div>
                 <div className='cases'>CASES <br/><span>{this.state.newYork.confirmed}</span></div>
-                <div className='today'>LAST UPDATED <br/> <span>{this.state.philippines.philippines_history}</span></div>
-                <div className='recovered'>RECOVERED <br/><span>{this.state.philippines.recovered}</span></div>
+                <div className='today'>LAST UPDATED <br/> <span>{this.state.usa.history}</span></div>
+                <div className='recovered'>RECOVERED <br/><span>{this.state.newYork.recovered}</span></div>
                 <div className='deaths'>DEATHS <br/> <span>{this.state.newYork.deaths}</span></div>
             </div>
             <div className = "pi">
