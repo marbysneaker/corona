@@ -27,7 +27,9 @@ state = {
   san_fran:[],
   us_death: 0,
   california:[],
-  newYork:[]
+  newYork:[],
+  confirmed:[],
+  sorted:[]
 }
 
 doFetch = () => {
@@ -43,7 +45,15 @@ doFetch = () => {
       .then(data => {
       console.log(data)
       this.setState({countries:data.confirmed.locations})
+      this.setState({confirmed:data})
       console.log(this.state.countries)
+      console.log(this.state.confirmed)
+      let sorted = this.state.confirmed.confirmed.locations.slice(0)
+      sorted.sort(function(a,b) {
+          return b.latest - a.latest;
+      });
+      console.log(sorted)
+      
       
       for (let i of this.state.countries){
         if (i.country === 'US'){
@@ -115,7 +125,7 @@ doFetch = () => {
           
         }
         if(i.province === 'New York'){
-          this.setState({ newYork: { ...this.state.newYork, recovered: i.latest}
+          this.setState({ newYork : { ...this.state.newYork, recovered: i.latest}
           })
           
         }
@@ -222,8 +232,7 @@ render() {
                 />
 
             </div>
-            <div className = "all">
-            </div>
+            <div></div>
         
         
         
