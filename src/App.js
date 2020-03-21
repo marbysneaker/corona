@@ -233,11 +233,13 @@ render() {
                 />
 
             </div>
+            <div className="graph-main">
             <div className="graph-box">   
                 <BarChart style={{height: "80%"}}
                   country = 'Philippines'
               />
               
+              </div>
               </div>
             </div>
         

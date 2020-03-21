@@ -487,8 +487,8 @@
     text-align: center;
   }
   .graph-main{
-    height: 100%;
-    width: 80%;
+    height: 400px;
+    width: 90%;
     border: 2px solid  #878f99;
     /* border-width: 2px; */
     /* border-color: black; */
@@ -511,11 +511,8 @@
   }
   
   .graph-box{
-    
-    grid-row: 3;
-  } 
-  .graph-box{
-    width: 1000px;
+    width: 400px;
+    height: 600px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
