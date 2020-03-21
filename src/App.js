@@ -9,6 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import {TwitterTimelineEmbed} from 'react-twitter-embed';
+import BarChart from './components/BarChart/BarChart.js'
 
 
 class App extends Component {
@@ -232,7 +233,15 @@ render() {
                 />
 
             </div>
-            <div></div>
+            <div className="graph-box">
+            {this.state.test.map((country, index) => (
+                                  
+                <BarChart index={index} onClick={() => this.displayClick(this.state.rates[country],country)} style={{height: (( 1.00 / (this.state.rates[country]))*100)+"%"}}
+                  country = {country}
+              />
+              ))}
+              </div>
+            </div>
         
         
         
