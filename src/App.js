@@ -233,19 +233,17 @@ render() {
                 />
 
             </div>
-            <div className="graph-box">
-            {this.state.test.map((country, index) => (
-                                  
-                <BarChart index={index} onClick={() => this.displayClick(this.state.rates[country],country)} style={{height: (( 1.00 / (this.state.rates[country]))*100)+"%"}}
-                  country = {country}
+            <div className="graph-box">   
+                <BarChart style={{height: "80%"}}
+                  country = 'Philippines'
               />
-              ))}
+              
               </div>
             </div>
         
         
         
-        </div>
+        
       
       </header>
     </div>
