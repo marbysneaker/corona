@@ -567,6 +567,7 @@
     height: 300px;
     top: 20%;
     left: 20%;
+    right: 20%;
     background-color: black;
     border-radius: 50px;
     align-self: center;
@@ -575,7 +576,7 @@
   }
   .reactloading{
     align-items: center;
-    text-align: center;
+    text-align: ;
     position: absolute;
     left: 40%;
     top: 30%;
