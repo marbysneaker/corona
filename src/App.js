@@ -150,6 +150,10 @@ doFetch = () => {
             })
             
           }
+          if (this.state.newYork.recovered === 0){
+            this.setState({california:{...this.state.california, recovered:'data error'}})
+    
+          }
           if(i.province === 'New York'){
             this.setState({ newYork: { ...this.state.newYork, deaths: i.latest}
             })
@@ -246,14 +250,7 @@ render() {
                 />
 
             </div>
-            <div className="graph-main">
-            <div className="graph-box">   
-                <BarChart style={{height: "80%"}}
-                  country = 'Philippines'
-              />
-              
-              </div>
-              </div>
+            
               {!this.state.done
               ?(<div className='loading'>
               
@@ -291,3 +288,13 @@ export default App;
 
 // </Select>
 // </FormControl>
+
+
+// <div className="graph-main">
+//             <div className="graph-box">   
+//                 <BarChart style={{height: "80%"}}
+//                   country = 'Philippines'
+//               />
+              
+//               </div>
+//               </div>
