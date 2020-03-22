@@ -10,6 +10,7 @@ import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import {TwitterTimelineEmbed} from 'react-twitter-embed';
 import BarChart from './components/BarChart/BarChart.js'
+import Reactloading from 'react-loading'
 
 
 class App extends Component {
@@ -30,7 +31,8 @@ state = {
   california:[],
   newYork:[],
   confirmed:[],
-  sorted:[]
+  sorted:[],
+  done: false,
 }
 
 doFetch = () => {
@@ -160,6 +162,8 @@ doFetch = () => {
       this.setState({ usa: { ...this.state.usa, deaths: us_deaths}})
       console.log(this.state.usa.deaths)
       this.setState({us_death:us_deaths})
+      this.setState({done: true})
+      console.log(this.state.done)
       
       })
     .catch((err) => console.error(err));
@@ -189,6 +193,7 @@ render() {
     <div className="App">
       <header className="App-header">
         <div className = "corona-container">
+        
             <div className = "world">
               <div className='world-title'><span>WORLD</span> </div> 
               <div className='world-cases'>CASES <br/> <span>{this.state.world.confirmed} </span></div>
@@ -241,7 +246,13 @@ render() {
               
               </div>
               </div>
-            </div>
+              {!this.state.done
+              ?(<div className='loading'>
+              
+              <Reactloading className='reactloading' type={"bars"} color={"white"} />
+              </div>
+            ):(<div></div>)}
+            </div> 
         
         
         
