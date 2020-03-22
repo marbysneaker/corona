@@ -135,6 +135,10 @@ doFetch = () => {
 
       }
       this.setState({usa:{...this.state.usa, recovered: us_recovered}})
+      if (this.state.usa.recovered === 0){
+        this.setState({usa:{...this.state.usa, recovered:'data error'}})
+
+      }
       this.setState({world:data.latest})
       // loop through death list
       let us_deaths =0
@@ -150,6 +154,10 @@ doFetch = () => {
             this.setState({ newYork: { ...this.state.newYork, deaths: i.latest}
             })
             
+          }
+          if (this.state.newYork.recovered === 0){
+            this.setState({newYork:{...this.state.newYork, recovered:'data error'}})
+    
           }
         }
         if (i.country === 'Philippines'){
